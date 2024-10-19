@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <main class="card">
+        <!-- Search Input Section -->
+        <header class="input-container">
+            <input type="text" class="city-input" placeholder="Enter city name" spellcheck="false">
+            <button class="search-btn">
+                <span><i class="fa fa-search"></i></span>
+            </button>
+        </header>
+
+        <!-- Weather Information Section -->
+        <section class="weather-info" style="display: none;">
+            <!-- Location and Date -->
+            <div class="location-data-container">
+                <div class="location">
+                    <span><i class="fas fa-location-dot"></i></span>
+                    <h4 class="country-txt regular-txt">City Name</h4>
+                </div>
+                <h5 class="date-txt">Date</h5>
+            </div>
+
+            <!-- Weather Summary -->
+            <div class="weather-summary-container">
+                <img src="/assets/weather/clouds.svg" alt="Weather Icon" class="weather-summary-img">
+                <div class="weather-summary-info">
+                    <h1 class="temp-txt">29°C</h1>
+                    <h3 class="condition-txt regular-txt">Clouds</h3>
+                    <h4 class="feels-like-txt">Feels like: 28°C</h4> <!-- Added feels-like temperature -->
+                    <h4 class="update-time-txt">Last updated: 12:00 PM</h4> <!-- Added update time -->
+                </div>
+            </div>
+
+            <!-- Weather Conditions -->
+            <div class="weather-conditions-container">
+                <div class="condition-item">
+                    <span><i class="fas fa-droplet"></i></span>
+                    <div>
+                        <h5 class="regular-txt">Humidity</h5>
+                        <h5 class="humidity-value-txt">55%</h5>
+                    </div>
+                </div>
+                <div class="condition-item">
+                    <span><i class="fas fa-wind"></i></span>
+                    <div>
+                        <h5 class="regular-txt">Wind Speed</h5>
+                        <h5 class="wind-value-txt">2 M/s</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forecast Items -->
+            <div class="forecast-items-container">
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">05 Aug</h5>
+                    <img src="/assets/weather/thunderstorm.svg" alt="Forecast Icon" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29°C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">06 Aug</h5>
+                    <img src="/assets/weather/thunderstorm.svg" alt="Forecast Icon" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">30°C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">07 Aug</h5>
+                    <img src="/assets/weather/thunderstorm.svg" alt="Forecast Icon" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">31°C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">08 Aug</h5>
+                    <img src="/assets/weather/thunderstorm.svg" alt="Forecast Icon" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">32°C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">09 Aug</h5>
+                    <img src="/assets/weather/thunderstorm.svg" alt="Forecast Icon" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">33°C</h5>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-city section-message">
+            <img src="assets/message/search-city.png">
+            <div>
+                <h1>Search City</h1>
+                <h4 class="regular-txt">
+                    Find out the weather conditions of the city
+                </h4>
+            </div>
+        </section>
+
+        <section class="not-found section-message" style="display: none;">
+            <img src="assets/message/not-found.png">
+            <div>
+                <h1>City Not Found</h1>
+                <h4 class="regular-txt">
+                    Please enter a valid city name.
+                </h4>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
