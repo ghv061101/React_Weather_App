@@ -1,54 +1,35 @@
-// src/components/Forecast.jsx
-import React, { useEffect, useState } from 'react';
-import { fetchWeatherData } from '../services/weatherServices';
-import Inputs from './Inputs';
-import TempAndDetails from './TempAndDetails';
-import TimeAndLocation from './TimeAndLocation';
-import WeatherChart from '../WeatherChart';
+import React from 'react';
 
 const Forecast = () => {
-    const [weatherData, setWeatherData] = useState(null);
-    const [location, setLocation] = useState('Delhi'); // Default location
-    const [temperatureThreshold, setTemperatureThreshold] = useState(() => {
-        return localStorage.getItem('temperatureThreshold') || 35; // Default threshold
-    });
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        localStorage.setItem('temperatureThreshold', temperatureThreshold); // Store the threshold
-    }, [temperatureThreshold]);
-
-    const fetchWeather = async () => {
-        try {
-            const rawData = await fetchWeatherData(location);
-            setWeatherData(rawData);
-            setError(null);
-        } catch (err) {
-            setError('Failed to fetch weather data. Please try again.');
-            setWeatherData(null);
-        }
-    };
-
-    useEffect(() => {
-        fetchWeather();
-        const intervalId = setInterval(fetchWeather, 300000); // Fetch every 5 minutes
-        return () => clearInterval(intervalId);
-    }, [location]); // Depend on location to refetch when it changes
+    const forecastData = [
+        { day: "Mon", icon: "01d", temp: 18 },
+        { day: "Tue", icon: "02d", temp: 21 },
+        { day: "Wed", icon: "03d", temp: 19 },
+        { day: "Thu", icon: "04d", temp: 22 },
+        { day: "Fri", icon: "01d", temp: 23 },
+        { day: "Sat", icon: "03d", temp: 20 },
+        { day: "Sun", icon: "02d", temp: 24 },
+    ];
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Weather Monitoring System</h1>
-            <Inputs
-                location={location}
-                setLocation={setLocation}
-                fetchWeather={fetchWeather}
-                temperatureThreshold={temperatureThreshold}
-                setTemperatureThreshold={setTemperatureThreshold}
-            />
-            {error && <p className="text-red-500">{error}</p>}
-            <TimeAndLocation weatherData={weatherData} />
-            <TempAndDetails weatherData={weatherData} />
-            <WeatherChart />
+        <div>
+            <div className='flex items-center justify-start mt-6'>
+                <p className='font-medium uppercase'>7-day Forecast</p>
+            </div>
+            <hr className='my-1' />
+            <div className='flex items-center justify-between'>
+                {forecastData.map(({ day, icon, temp }, index) => (
+                    <div key={index} className='flex flex-col items-center justify-center'>
+                        <p className='font-light text-sm'>{day}</p>
+                        <img 
+                            src={`http://openweathermap.org/img/wn/${icon}@2x.png`} 
+                            alt={`${day} weather icon`} 
+                            className='w-12 my-1' 
+                        />
+                        <p className='font-medium'>{temp}°</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
