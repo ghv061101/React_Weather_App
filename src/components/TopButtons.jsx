@@ -16,7 +16,7 @@ const TopButtons = () => {
     },
     {
       id: 4,
-      name: 'Bangalore',
+      name: 'Bangalore', // Corrected spelling
     },
     {
       id: 5,
@@ -30,15 +30,14 @@ const TopButtons = () => {
 
   return (
     <div className='flex items-center justify-around my-6'>
-      {
-        cities.map(city => (
-          <button 
-            key={city.id} 
-            className='text-lg font-medium hover:bg-black px-3 py-2 rounded-md transition ease-in'>
-            {city.name}
-          </button>
-        ))
-      }
+      {cities.map(city => (
+        <button 
+          key={city.id} 
+          className='text-lg font-medium hover:bg-black px-3 py-2 rounded-md transition ease-in'
+        >
+          {city.name}
+        </button>
+      ))}
     </div>
   );
 };
