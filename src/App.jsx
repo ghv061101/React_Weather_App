@@ -7,13 +7,13 @@ import Inputs from './components/Inputs';
 import getFormattedWeatherData from './services/weatherServices'; // Import the weather data functions
 
 const App = () => {
-    const [query, setQuery] = useState({ q: 'Chittoor' });
+    const [query, setQuery] = useState({ q: 'palmaner' });
     const [units, setUnits] = useState('metric');
     const [weather, setWeather] = useState(null);
 
     const getWeather = async () => {
         try {
-            const data = await getFormattedWeatherData({ q: query.q, units });
+            const data = await getFormattedWeatherData({ ...query, units });
             setWeather(data);
             console.log("Weather data set:", data); // Log the weather data set
         } catch (error) {
