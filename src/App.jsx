@@ -28,9 +28,10 @@ const App = () => {
 
     const formatBackground =()=>{
         if (!weather) return 'from-cyan-600 to-blue-700';
-        const threshold = units === 'metric' ? 30 : 60;
+        const threshold = units === 'metric' ? 30 : units ? 86 : 297;
         if (weather.temp <= threshold) return 'from-cyan-600 to-blue-700';
         return "from-yellow-600 to-orange-700";
+        
     }
 
     return (
