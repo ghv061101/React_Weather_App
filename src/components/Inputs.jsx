@@ -31,13 +31,13 @@ const Inputs = ({setQuery,setUnits}) => {
           className='text-gray-500 text-xl font-light p-2 w-full shadow-xl capitalize focus:outline-none'
         />
         <BiSearch 
-          className='cursor-pointer transition ease-out hover:scale-125' 
+          className='cursor-pointer transition ease-out hover:scale-125 hover:text-black' 
           size={30} 
           aria-label="Search" 
           onClick={handleSerachClick}
         />
         <BiCurrentLocation 
-          className='cursor-pointer transition ease-out hover:scale-125' 
+          className='cursor-pointer transition ease-out hover:scale-125 hover:text-black' 
           size={30} 
           aria-label="Current Location" 
           onClick={handleLocationClick}
@@ -45,11 +45,17 @@ const Inputs = ({setQuery,setUnits}) => {
       </div>
 
       <div className='flex flex-row w-1/4 items-center justify-center'>
-        <button className='text-2xl font-medium transition ease-out hover:scale-125'>°C</button>
+        <button className='text-2xl font-medium transition ease-out hover:scale-125 hover:text-black'
+        onClick={()=>setUnits("metric")}
+        >°C</button>
         <p className='text-2xl font-medium mx-1'>|</p>
-        <button className='text-2xl font-medium transition ease-out hover:scale-125'>°F</button>
+        <button className='text-2xl font-medium transition ease-out hover:scale-125 hover:text-black'
+        onClick={()=>setUnits("imperial")}
+        >°F</button>
         <p className='text-2xl font-medium mx-1'>|</p>
-        <button className='text-2xl font-medium transition ease-out hover:scale-125'>°K</button>
+        <button className='text-2xl font-medium transition ease-out hover:scale-125 hover:text-black '
+        onClick={()=>setUnits("standard")}
+        >°K</button>
       </div>
     </div>
   );
