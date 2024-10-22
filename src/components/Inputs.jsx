@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BiCurrentLocation, BiSearch } from 'react-icons/bi';
 
-const Inputs = () => {
+const Inputs = ({setQuery,setUnits}) => {
+
+  const [city,setCity]=useState("");
+
+  const handleSerachClick = ()=>{
+
+    if (city !=="") setQuery({q:city});
+  };
+
+  const handleLocationClick = () =>{
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((position)=>{
+        const {latitude,longitude} =position.coords
+        setQuery({lat:latitude,lon:longitude})
+      })
+    }
+
+  };
+
   return (
     <div className='flex flex-row justify-center my-6'>
       <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
         <input 
+          value={city}
+          onChange={(e)=>setCity(e.currentTarget.value)}
           type="text" 
           placeholder='Search by City' 
           className='text-gray-500 text-xl font-light p-2 w-full shadow-xl capitalize focus:outline-none'
@@ -14,11 +34,13 @@ const Inputs = () => {
           className='cursor-pointer transition ease-out hover:scale-125' 
           size={30} 
           aria-label="Search" 
+          onClick={handleSerachClick}
         />
         <BiCurrentLocation 
           className='cursor-pointer transition ease-out hover:scale-125' 
           size={30} 
           aria-label="Current Location" 
+          onClick={handleLocationClick}
         />
       </div>
 
