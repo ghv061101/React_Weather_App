@@ -4,7 +4,13 @@ import TimeAndLocation from './components/TimeAndLocation';
 import TempAndDetails from './components/TempAndDetails';
 import Forecast from './components/Forecast';
 import Inputs from './components/Inputs';
-import getFormattedWeatherData from './services/weatherServices'; // Import the weather data functions
+import getFormattedWeatherData from './services/weatherServices';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function cap(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const App = () => {
     const [query, setQuery] = useState({ q: 'palmaner' });
@@ -12,6 +18,10 @@ const App = () => {
     const [weather, setWeather] = useState(null);
 
     const getWeather = async () => {
+
+
+        const cityName = query.q ? query.q : 'current location';
+        toast.info(`Fetching weather data for ${cap(cityName)}`);
         try {
             const data = await getFormattedWeatherData({ ...query, units });
             setWeather(data);
@@ -42,11 +52,14 @@ const App = () => {
             {weather && (
                 <>
                     <TimeAndLocation weather={weather} />
-                    <TempAndDetails weather={weather} />
+                    <TempAndDetails weather={weather} units={units} />
                     <Forecast title='3 hours step Forecast' data={weather.hourly}/>
                     <Forecast title='daily forecast' data={weather.daily} />
                 </>
             )}
+
+
+            <ToastContainer autoClose={2500} hideProgressBar={true} theme='colored' />
         </div>
     );
 };
