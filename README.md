@@ -1,7 +1,4 @@
-Here’s a README file for your weather application project:
-
 ---
-
 # Weather App
 
 This is a weather forecasting application built using React, Tailwind CSS, and the OpenWeatherMap API. It provides real-time weather updates, forecasts, and weather conditions for different cities. The application allows users to view current weather details, hourly and daily forecasts, and switch between Celsius and Fahrenheit units.
