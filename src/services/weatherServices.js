@@ -19,11 +19,11 @@ const getWeatherData = (infoType, searchParams) => {
             return res.json();
         })
         .then((data) => {
-            console.log("Fetched data:", data); // Log the fetched data
+            console.log("Fetched data:", data); 
             return data;
         })
         .catch(error => {
-            console.error("Error fetching weather data:", error); // Catch and log any errors
+            console.error("Error fetching weather data:", error); 
         });
 };
 
@@ -79,15 +79,18 @@ const formatForecastWeather = (secs, offset, data) => {
         title: formatToLocalTime(f.dt, offset, 'hh:mm a'),
         icon: iconUrlFromCode(f.weather[0].icon),
         date: f.dt_txt,
-    })).slice(0, 5);
+    })).slice(0,9);
 
     // Daily forecast
-    const daily = data.filter((f) => f.dt_txt.slice(-8) === "00:00:00").map(f => ({
-        temp: f.main.temp,
-        title: formatToLocalTime(f.dt, offset, 'ccc'),
-        icon: iconUrlFromCode(f.weather[0].icon),
-        date: f.dt_txt,
-    }));
+    const daily = data
+    .filter((f) => f.dt_txt.includes("12:00:00")) // Choosing the forecast closest to midday (can change to another time)
+    .map((f) => ({
+      temp: f.main.temp, // Access temperature from 'main'
+      title: formatToLocalTime(f.dt, offset, 'ccc'),
+      icon: iconUrlFromCode(f.weather[0].icon),
+      date: f.dt_txt,
+    }))
+    .slice(0, 9); 
 
     return { hourly, daily };
 };
