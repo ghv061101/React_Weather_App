@@ -22,8 +22,10 @@ const App = () => {
 
         const cityName = query.q ? query.q : 'current location';
         toast.info(`Fetching weather data for ${cap(cityName)}`);
+
         try {
             const data = await getFormattedWeatherData({ ...query, units });
+            toast.success(`Fetching weather data for ${data.name},${data.country}`);
             setWeather(data);
             console.log("Weather data set:", data); // Log the weather data set
         } catch (error) {
