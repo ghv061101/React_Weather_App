@@ -32,7 +32,7 @@ Follow these steps to set up the project on your local machine.
 1. Clone the repository:
 
 ```bash
-[https://github.com/ghv061101/React_Weather_App.git](https://github.com/ghv061101/React_Weather_App.git)
+(https://github.com/ghv061101/React_Weather_App.git)
 ```
 
 2. Navigate into the project directory:
